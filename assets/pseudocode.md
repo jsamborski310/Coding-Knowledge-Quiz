@@ -1,0 +1,87 @@
+# what starting data my application needs to run?
+
+- Questions and Answers
+
+    - Array list for our series of questions.
+
+
+    - Each question will be an object.
+        - {
+
+            question: "Commonly used data types DO NOT include:",
+            multipleChoiceOptions: [
+                "string",
+                "boolean",
+                "numbers"
+            ],
+            correct: "alert"
+        }
+
+- Timer / Score
+
+
+
+# What kinds of actions does my application need to do?
+
+
+-Timer/Score
+- Timer interval
+var interval; (modify inside of function)
+
+- Start the Game
+function startGame () {...}
+
+    - Hide welcome message 
+    function hideWelcome () {...} 
+
+    - Display next question
+    function displayNextQuestion () {...}
+
+    - Start the countdown timer
+    function starttimer() {
+        interval = setInterval(function()) {
+            ...
+            clearInterval();
+        }, 1000);
+    } * Not clearing the interval here. Declare variable outside of the function. 
+      * Alot of declarations need to be global. 
+
+- Answer a Question
+
+    - Validate the users choice
+
+        - IF the choice is wrong, subtract time from the timer.
+
+    - Display next question
+    function displayNextQuestion () {...}
+
+    - Display the answer result (least important).
+
+- End the Game
+    
+    - Stop the timer from counting down. (clearInterval)
+
+
+
+
+# DISCUSSION NOTES:
+
+    Form submits
+    Capture form submission
+    Store high schore value
+    Loading high scores
+    Printing high scores
+    For every action, we need to create a function.
+
+    In function, only put something in the parenthesis () if you need to accept data or pass data. 
+
+    Form Action
+    Data storage
+    On Click
+
+    Everything in the bullet point is a function
+
+    <ol id="highscores"></ol> on HTML. 
+
+
+
