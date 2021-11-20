@@ -68,7 +68,7 @@ function startGame () {...}
 
     Form submits
     Capture form submission
-    Store high schore value
+    Store high score value
     Loading high scores
     Printing high scores
     For every action, we need to create a function.
