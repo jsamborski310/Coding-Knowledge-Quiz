@@ -1,33 +1,30 @@
 var questionsData = [
     {
-        question: "Question 1",
-        multipleChoice: [ 
-            "One", 
-            "Two", 
-            "Three", 
+        question: "Two plus two, equals?",
+        multipleChoices: [
+            "One",
+            "Two",
+            "Three",
             "Four"
-            // a: "Q1Choice_1",
-            // b: "Q1Choice_2",
-            // c: "Q1Choice_3",
-            // d: "Q1Choice_4"
         ],
-        correctAnswer: "Q1Choice_2"
+        correctAnswer: "Four"
 
-    },
+        // },
 
-    {
-        question: "Question 2",
-        multipleChoice: {
-            a: "Q2Choice_1",
-            b: "Q2Choice_2",
-            c: "Q2Choice_3",
-            d: "Q2Choice_4"
-        },
-        correctAnswer: "Q1Choice_2"
+        // {
+        //     question: "Three plus three, equals?",
+        //     multipleChoices: [
+        //         "Five",
+        //         "Six",
+        //         "Seven",
+        //         "Eight"
+        //     ],
+        //     correctAnswer: "Six"
 
-    }
-];
+        // }
+        // ];
 
+    }];
 
 /////////////////////////////////////////
 
@@ -52,47 +49,91 @@ var questionsData = [
 
 
 var gameSection = document.getElementById("gameQuestions");
-var resultSection = document.getElementById("result");
-var nextQuestion = document.getElementById("next");
-// var questionTitle = document.getElementById("questionTitle");
-var multipleChoices = document.getElementById("multipleChoiceOptions");
+
+
+var multipleChoiceButtons = document.getElementById("multipleChoiceButtons");
+
+
+
 var score = 0;
-// var questionIndex = 0;
-// var currentQuestion;
+
+var currentQuestion = 0;
+var choicesArrayIndex = [];
 
 
-for(var i = 0; i < questionsData.length; i++) {
-    var response = questionsData[i].question;
-    if(response == questionsData[i].correctAnswer) {
-        score++;
-    } else {
-        console.log("wrong");
+function displayQuestions() {
+
+
+    // Pulling questionTitle div from HTML to Javascript.
+    var questionTitle = document.getElementById("questionTitle");
+
+    // Setting the quiz question to the questionTitle div in HTML.
+    questionTitle.textContent = questionsData[currentQuestion].question;
+
+    // Setting the program to run through the multiple choices in a specific question.
+    for (var i = 0; i < questionsData[currentQuestion].multipleChoices.length; i++) {
+
+
+        //Creating a button element for each multiple choice option.
+        var choiceButton = document.createElement("button");
+
+        // Adds the multiple choice text to the button.
+        choiceButton.textContent = questionsData[currentQuestion].multipleChoices[i];
+
+        // Adds multiple choice buttons to the HTML dynamically.
+        multipleChoiceButtons.append(choiceButton);
+
+
+
+
+        // Validates responses.
+        if (questionsData[currentQuestion].multipleChoices[i] === questionsData[currentQuestion].correctAnswer) {
+            choiceButton.setAttribute("correct", "yes");
+            console.log("correct");
+        } else {
+            choiceButton.setAttribute("correct", "no");
+            console.log("incorrect");
+        }
+
+
+
+
+
+
+
+
+        console.log(choiceButton);
     }
+
 }
+displayQuestions(questionsData);
 
 
 
 
-// function displayQuestions(q) {
 
-//     var theQuestion = document.getElementById("questionTitle");
-//     theQuestion.textContent = q.question;
 
+
+
+//
+//     if(response == questionsData[i].correctAnswer) {
+//         score++;
+//     } else {
+//         console.log("wrong");
+//     }
 // }
-// displayQuestions(questionsData);
 
 
 
 
 
 
-        // questionTitle.innerHTML = questionData.question;
 
-        // for(var i = 0; i < questionsData.length; i++) {
-            
-        //     questionTitle.innerText = questionsData[i].question;
 
-        // // }
+
+
+
+
 
         // questionTitle = "";
         // questionIndex = questionIndex + 1;
@@ -106,7 +147,7 @@ for(var i = 0; i < questionsData.length; i++) {
 
 
 
-    
+
 
 
     // function validateAnswer() {
@@ -131,10 +172,10 @@ for(var i = 0; i < questionsData.length; i++) {
 
 // // Start displaying Game Questions.
 
-    for(var i = 0; i < questionsData.length; i++) {
-        gameQuestions.textContent = gameQuestions.textContent + (questionsData[i].question) + (questionsData[i].multipleChoice);
+    // for(var i = 0; i < questionsData.length; i++) {
+    //     gameQuestions.textContent = gameQuestions.textContent + (questionsData[i].question) + (questionsData[i].multipleChoice);
 
-    }
+    // }
 
 
 
