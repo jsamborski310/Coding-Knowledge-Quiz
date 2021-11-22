@@ -2,9 +2,9 @@ var questionsData = [
     {
         question: "Two plus two, equals?",
         multipleChoices: [
-            "One",
-            "Two",
-            "Three",
+            "One", 
+            "Two", 
+            "Three", 
             "Four"
         ],
         correctAnswer: "Four"
@@ -40,6 +40,8 @@ startGameButton.addEventListener("click", function () {
 
     //Displays questions that is being created in function below.
     displayQuestions(questionsData);
+    // Start timer.
+    //
 
 });
 
@@ -78,6 +80,12 @@ function displayQuestions() {
 
 
 
+/////////////////////////////
+// Create function? If there is a response, then move to the next?
+
+// function validateAnswer() {
+
+ ///////////   
 
         // Validates responses.
         if (questionsData[currentQuestion].multipleChoices[i] === questionsData[currentQuestion].correctAnswer) {
@@ -96,40 +104,71 @@ function displayQuestions() {
 
 ////////////////////////////////////////
 
-//Create a function to navigate to the next question. 
-
-function nextQuestion(direction) {
-
-    currentQuestion = currentQuestion + direction;
-    if(currentQuestion < 0) {
-        currentQuestion = questionsData.length - 1;
-    }
-    else if (currentQuestion > questionsData.length - 1) {
-        currentQuestion = 0;
-    }
+// Create a function to navigate to the next question. 
+// Create an empty function for other questions? 
 
 
-    gameSection.addEventListener("click", function() {
-        window.location.href = questionsData[currentQuestion];
-    })
+var questionGroup = [];
+
+function nextQuestion(i) {
+
+    displayQuestions()
+
+    // https://dev.to/sulaimonolaniran/building-a-simple-quiz-with-html-css-and-javascript-4elp
+
+    // currentQuestion = questionsData.length - 1;
+    
+    // currentQuestion++;
 
 }
-multipleChoiceButtons.addEventListener("click", function(event) {
-    event.stopPropagation();
 
-    nextQuestion(1);
-});
+// gameSection.addEventListener("click", function() {
+//     window.location.href = questionsData[currentQuestion];
+//  } );
+
+
+// multipleChoiceButtons.addEventListener("click", function (event) {
+//     event.stopPropagation();
+
+//     nextQuestion(1);
+// });
 
 console.log(nextQuestion);
 
 //////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var score = 0;
 
 
 
 
+// Clear out the current set of questions ?
 
+// Create an array with user selections: selections = "", then selections += (whatever they clicked)
 
 
 //
@@ -140,6 +179,27 @@ var score = 0;
 //     }
 // }
 
+
+
+
+
+
+
+// function nextQuestion(i) {
+
+//     displayQuestions()
+
+//     currentQuestion = currentQuestion[i];
+//     if (currentQuestion < 0) {
+//         currentQuestion = questionsData.length - 1;
+//     }
+//     else if (currentQuestion > questionsData.length - 1) {
+//         console.log(currentQuestion);
+//     } 
+    
+//     currentQuestion++;
+
+// }
 
 
 
