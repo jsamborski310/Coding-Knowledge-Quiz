@@ -9,56 +9,49 @@ var questionsData = [
         ],
         correctAnswer: "Four"
 
-        // },
+    },
 
-        // {
-        //     question: "Three plus three, equals?",
-        //     multipleChoices: [
-        //         "Five",
-        //         "Six",
-        //         "Seven",
-        //         "Eight"
-        //     ],
-        //     correctAnswer: "Six"
+    {
+        question: "Three plus three, equals?",
+        multipleChoices: [
+            "Five",
+            "Six",
+            "Seven",
+            "Eight"
+        ],
+        correctAnswer: "Six"
 
-        // }
-        // ];
+    }
+];
 
-    }];
 
 /////////////////////////////////////////
 
-// Hides welcome message when the button is clicked.
+//Hides welcome message when the button is clicked and reveals questions.
 
 //Variables
+var startGameButton = document.getElementById("startGame");
+var welcome = document.querySelector(".welcomeMessage");
+//
 
-// var startGameButton = document.getElementById("#startGame");
-// var welcome = document.querySelector(".welcomeMessage");
+startGameButton.addEventListener("click", function () {
+    //Hides the welcome.
+    welcome.setAttribute("style", "display:none;");
 
-// startGame.addEventListener("click", function () {
-//     //Hides the welcome.
-//     welcome.setAttribute("style", "display:none;");
+    //Displays questions that is being created in function below.
+    displayQuestions(questionsData);
 
-
-//     //Display game questions?
-//     document.getElementById("gameQuestions").innerHTML = "Hello World"; //create the function then print it here?
-
-// });
+});
 
 ///////////////////////////////
 
+// Displays questions. 
 
+// Variables
 var gameSection = document.getElementById("gameQuestions");
-
-
 var multipleChoiceButtons = document.getElementById("multipleChoiceButtons");
-
-
-
-var score = 0;
-
 var currentQuestion = 0;
-var choicesArrayIndex = [];
+
 
 
 function displayQuestions() {
@@ -88,6 +81,7 @@ function displayQuestions() {
 
         // Validates responses.
         if (questionsData[currentQuestion].multipleChoices[i] === questionsData[currentQuestion].correctAnswer) {
+
             choiceButton.setAttribute("correct", "yes");
             console.log("correct");
         } else {
@@ -95,19 +89,42 @@ function displayQuestions() {
             console.log("incorrect");
         }
 
-
-
-
-
-
-
-
         console.log(choiceButton);
     }
 
 }
-displayQuestions(questionsData);
 
+////////////////////////////////////////
+
+//Create a function to navigate to the next question. 
+
+function nextQuestion(direction) {
+
+    currentQuestion = currentQuestion + direction;
+    if(currentQuestion < 0) {
+        currentQuestion = questionsData.length - 1;
+    }
+    else if (currentQuestion > questionsData.length - 1) {
+        currentQuestion = 0;
+    }
+
+
+    gameSection.addEventListener("click", function() {
+        window.location.href = questionsData[currentQuestion];
+    })
+
+}
+multipleChoiceButtons.addEventListener("click", function(event) {
+    event.stopPropagation();
+
+    nextQuestion(1);
+});
+
+console.log(nextQuestion);
+
+//////////////////////////////////////////////////
+
+var score = 0;
 
 
 
