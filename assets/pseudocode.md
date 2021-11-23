@@ -87,3 +87,76 @@ function startGame () {...}
 
 ## CLASS EXAMPLE
 
+// Create an array with user selections: selections = "", then selections += (whatever they clicked)
+
+
+//
+//     if(response == questionsData[i].correctAnswer) {
+//         score++;
+//     } else {
+//         console.log("wrong");
+//     }
+// }
+
+
+
+
+
+
+
+// function nextQuestion(i) {
+
+//     displayQuestions()
+
+//     currentQuestion = currentQuestion[i];
+//     if (currentQuestion < 0) {
+//         currentQuestion = questionsData.length - 1;
+//     }
+//     else if (currentQuestion > questionsData.length - 1) {
+//         console.log(currentQuestion);
+//     } 
+
+//     currentQuestion++;
+
+// }
+
+
+
+
+
+  
+
+
+
+
+
+//     // look into target element
+
+//     // look into printing data
+
+
+
+/////////////////////////////////////
+
+//    multipleChoiceButtons.addEventListener("click", validateAnswer);
+
+//     function validateAnswer(event) {
+
+//         if(event.target.matches("button")) {
+//             if(event.target.getAttribute("correct") == "yes") {
+//                 choiceButton.setAttribute("style", "background-color:green;");
+//             }
+//             else if(event.target.getAttribute("correct") == "no") {
+//                 choiceButton.setAttribute("style", "background-color:red;");
+//             }
+// }
+
+        // Validates responses.  
+
+
+
+
+
+
+
+

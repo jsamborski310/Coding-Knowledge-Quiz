@@ -2,9 +2,9 @@ var questionsData = [
     {
         question: "Two plus two, equals?",
         multipleChoices: [
-            "One", 
-            "Two", 
-            "Three", 
+            "One",
+            "Two",
+            "Three",
             "Four"
         ],
         correctAnswer: "Four"
@@ -20,6 +20,18 @@ var questionsData = [
             "Eight"
         ],
         correctAnswer: "Six"
+
+    },
+
+    {
+        question: "One plus one, equals?",
+        multipleChoices: [
+            "Two",
+            "Three",
+            "Four",
+            "Five"
+        ],
+        correctAnswer: "Two"
 
     }
 ];
@@ -58,7 +70,6 @@ var currentQuestion = 0;
 
 function displayQuestions() {
 
-
     // Pulling questionTitle div from HTML to Javascript.
     var questionTitle = document.getElementById("questionTitle");
 
@@ -68,220 +79,77 @@ function displayQuestions() {
     // Setting the program to run through the multiple choices in a specific question.
     for (var i = 0; i < questionsData[currentQuestion].multipleChoices.length; i++) {
 
-
         //Creating a button element for each multiple choice option.
-        var choiceButton = document.createElement("button");
+        choiceButton = document.createElement("button");
 
         // Adds the multiple choice text to the button.
         choiceButton.textContent = questionsData[currentQuestion].multipleChoices[i];
+
+
+
+
+
+
+
+
+        // set data attribute, pull it into the click event. event.target. Compare to dataset choice. Validate later, when they click button. 
+choiceButton.dataset.choices = questionsData[currentQuestion].multipleChoices[i];
 
         // Adds multiple choice buttons to the HTML dynamically.
         multipleChoiceButtons.append(choiceButton);
 
 
 
-/////////////////////////////
-// Create function? If there is a response, then move to the next?
 
-// function validateAnswer() {
+//////////////////////////////////////
 
- ///////////   
+    //Next Question
 
-        // Validates responses.
-        if (questionsData[currentQuestion].multipleChoices[i] === questionsData[currentQuestion].correctAnswer) {
+    // Adds function to trigger next question.
+    function nextQuestion() {
+        // Function takes place when button clicked.
+        choiceButton.addEventListener("click", function () {
 
-            choiceButton.setAttribute("correct", "yes");
-            console.log("correct");
-        } else {
-            choiceButton.setAttribute("correct", "no");
-            console.log("incorrect");
-        }
+            // Clears out the current question and multiple choice options.
+            questionTitle.innerHTML = "";
+            multipleChoiceButtons.innerHTML = "";
 
-        console.log(choiceButton);
+            // Moves to the next question
+            currentQuestion += 1;
+
+            displayQuestions(questionsData);
+
+            nextQuestion();
+
+        });
+
     }
 
-}
 
-////////////////////////////////////////
-
-// Create a function to navigate to the next question. 
-// Create an empty function for other questions? 
-
-
-var questionGroup = [];
-
-function nextQuestion(i) {
-
-    displayQuestions()
-
-    // https://dev.to/sulaimonolaniran/building-a-simple-quiz-with-html-css-and-javascript-4elp
-
-    // currentQuestion = questionsData.length - 1;
-    
-    // currentQuestion++;
-
-}
-
-// gameSection.addEventListener("click", function() {
-//     window.location.href = questionsData[currentQuestion];
-//  } );
-
-
-// multipleChoiceButtons.addEventListener("click", function (event) {
-//     event.stopPropagation();
-
-//     nextQuestion(1);
-// });
-
-console.log(nextQuestion);
 
 //////////////////////////////////////////////////
 
 
+//Create function
+//button first, and then validate
+        if (questionsData[currentQuestion].multipleChoices[i] === questionsData[currentQuestion].correctAnswer) {
+            // choiceButton.setAttribute("correct", "yes");
+            console.log("correct");
+        } else {
+            // choiceButton.setAttribute("correct", "no");
+            console.log("incorrect");
+        }
+
+        //validate(selectedAnswer);
+
+        nextQuestion();
+    }
+
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var score = 0;
-
-
-
-
-// Clear out the current set of questions ?
-
-// Create an array with user selections: selections = "", then selections += (whatever they clicked)
-
-
-//
-//     if(response == questionsData[i].correctAnswer) {
-//         score++;
-//     } else {
-//         console.log("wrong");
-//     }
-// }
-
-
-
-
-
-
-
-// function nextQuestion(i) {
-
-//     displayQuestions()
-
-//     currentQuestion = currentQuestion[i];
-//     if (currentQuestion < 0) {
-//         currentQuestion = questionsData.length - 1;
-//     }
-//     else if (currentQuestion > questionsData.length - 1) {
-//         console.log(currentQuestion);
-//     } 
     
-//     currentQuestion++;
-
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-        // questionTitle = "";
-        // questionIndex = questionIndex + 1;
-        // if (questionIndex < 0) {
-        //     questionIndex = questionsData.length;
-        // } else if (questionIndex > questionsData.length) {
-        //     questionIndex = 0;
-        // }
-        // currentQuestion = questionsData.question[questionIndex];
-        // return questionTitle;
-
-
-
-
-
-
-    // function validateAnswer() {
-    //     if (multipleChoice == correctAnswer) {
-    //         score++;
-    //     }
-    //     else {
-    //         result.textContent("Wrong");
-    //     }
-    // }
-
-    // nextQuestion.addEventListener("click", function () {
-
-    // });
-
-
-
-
-
-
-
-
-// // Start displaying Game Questions.
-
-    // for(var i = 0; i < questionsData.length; i++) {
-    //     gameQuestions.textContent = gameQuestions.textContent + (questionsData[i].question) + (questionsData[i].multipleChoice);
-
-    // }
-
-
-
-//     if(multipleChoice===correctAnswer) {
-//         console.log("Correct!");
-//     } else {
-//         console.log("Wrong!");
-//     }
-
-
-//     // return gameQuestionsList
-//     // gameQuestionsList = function
-
-//     // Do if/else statement first? Get all of the values, and then display? 
-//     // if/else statement. If choice is === answer, then it's correct.
-
-
-//     //add button event listener
-
-
-//     // look into target element
-
-//     // look into printing data
-
-
-
-
-
-
+    
 
 
 
