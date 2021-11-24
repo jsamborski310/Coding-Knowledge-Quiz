@@ -16,6 +16,11 @@ var questionsData = [
     multipleChoices: ["Two", "Three", "Four", "Five"],
     correctAnswer: "Two",
   },
+  {
+    question: "Five plus five, equals?",
+    multipleChoices: ["Ten", "Three", "Four", "Five"],
+    correctAnswer: "Two",
+  },
 ];
 
 /////////////////////////////////////////
@@ -37,9 +42,7 @@ startGameButton.addEventListener("click", function () {
   displayQuestions(questionsData);
 
   // Start timer.
-
   startCountdown();
-  // timerInterval = setInterval(startCountdown, 1000);
 });
 
 ///////////////////////////////
@@ -86,16 +89,18 @@ function displayQuestions() {
         event.target.textContent ===
         questionsData[currentQuestion].correctAnswer
       ) {
-        choiceButton.setAttribute("style", "background-color:green;");
-        score += console.log("Correct");
+        // choiceButton.setAttribute("style", "background-color:green;");
+        score ++;
+        console.log("Correct");
+        console.log(score);
       } else {
-        choiceButton.setAttribute("style", "background-color:red;");
+        // choiceButton.setAttribute("style", "background-color:red;");
         secondsRemaining -= 10;
         console.log("Incorrect");
       }
-
       nextQuestion();
     });
+
 
     //////////////////////////////////////////////////
 
@@ -131,12 +136,40 @@ function startCountdown() {
 
 ///////////////////////////////////////////////////
 
+
+
+
+
+
+
+
+
 // End Game.
 
 function endGame() {
 
+
   // Clear timer.  
   clearInterval(timerInterval);
+
+
+  }
+
+function calculateScore() {
+
+
+var displayResults = document.getElementById("results");
+
+    for (var i = 0; i < questionsData.length; i++ ) {
+            if(currentQuestion >= questionsData.length-1) {
+                gameSection.setAttribute("style", "display:none;");
+                displayResults.textContent = "Your final score is " + score + " out of ";
+                displayResults.innerHTML = "Your final score is " + score + " out of ";
+
+    
+
+    } calculateScore();
+} 
 }
 // create the html.
 //get elements
