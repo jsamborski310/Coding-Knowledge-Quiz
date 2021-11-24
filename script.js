@@ -170,10 +170,12 @@ var username = document.getElementById("playerInitials");
 var saveScoreButton = document.getElementById("submitInitials");
 
 function saveHighScores() {
-  saveScoreButton.addEventListener("click", function () {
+  saveScoreButton.addEventListener("click", function(event) {
+    event.preventDefault();
+
     var playerScore = {
       score: score,
-      name: username.value,
+      name: username,
     };
 
     score.push(playerScore);
