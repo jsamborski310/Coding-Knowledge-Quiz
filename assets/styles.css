@@ -13,6 +13,11 @@ main {
     margin:0 auto;
 }
 
+/* #timer {
+    color:black;
+    font-size:40px;
+} */
+
 .choiceButtonStyle button {
     background-color:black;
     width: 100%;

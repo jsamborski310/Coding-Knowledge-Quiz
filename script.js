@@ -20,26 +20,29 @@ var questionsData = [
 
 /////////////////////////////////////////
 
-//Hides welcome message when the button is clicked and reveals questions.
-
-//Variables
+// Variables
 var startGameButton = document.getElementById("startGame");
 var welcome = document.querySelector(".welcomeMessage");
-//
+var timer = document.getElementById("timer");
 
+var secondsRemaining = 200;
+var timerInterval;
+
+// Hides welcome message when the button is clicked and reveals questions.
 startGameButton.addEventListener("click", function () {
   //Hides the welcome.
   welcome.setAttribute("style", "display:none;");
 
-  //Displays questions that is being created in function below.
+  // Displays questions that is being created in function below.
   displayQuestions(questionsData);
+
   // Start timer.
-  //
+
+  startCountdown();
+  // timerInterval = setInterval(startCountdown, 1000);
 });
 
 ///////////////////////////////
-
-// Displays questions.
 
 // Variables
 var gameSection = document.getElementById("gameQuestions");
@@ -47,6 +50,7 @@ var multipleChoiceButtons = document.getElementById("multipleChoiceButtons");
 var currentQuestion = 0;
 var choiceButton;
 
+// Displays questions.
 function displayQuestions() {
   // Pulling questionTitle div from HTML to Javascript.
   var questionTitle = document.getElementById("questionTitle");
@@ -60,92 +64,80 @@ function displayQuestions() {
     i < questionsData[currentQuestion].multipleChoices.length;
     i++
   ) {
-    //Creating a button element for each multiple choice option.
+    // Creating a button element for each multiple choice option.
     choiceButton = document.createElement("button");
 
     // Adds the multiple choice text to the button.
     choiceButton.textContent =
       questionsData[currentQuestion].multipleChoices[i];
 
-    // set data attribute, pull it into the click event. event.target. Compare to dataset choice. Validate later, when they click button.
-    //  choiceButton.dataset.choices = questionsData[currentQuestion].multipleChoices[i];
-
-    // Adds multiple choice buttons to the HTML dynamically.
+    // Adds the buttons to the HTML.
     multipleChoiceButtons.append(choiceButton);
-
-    // // <button data-answer="Yellow">Yellow</button>
-    // .dataset.answer
-
-    // if  //
 
     //////////////////////////////////////
 
-    //Next Question
+    // Validates the Players button selection.
 
-    // Adds function to trigger next question.
+    var score = 0;
 
     choiceButton.addEventListener("click", function (event) {
-      console.log(event.target.textContent);
+      //   console.log(event.target.textContent);
       if (
         event.target.textContent ===
         questionsData[currentQuestion].correctAnswer
       ) {
-        console.log("Correct");
+        choiceButton.setAttribute("style", "background-color:green;");
+        score += console.log("Correct");
       } else {
+        choiceButton.setAttribute("style", "background-color:red;");
+        secondsRemaining -= 10;
         console.log("Incorrect");
       }
 
       nextQuestion();
     });
 
+    //////////////////////////////////////////////////
+
+    // Moves Player to the next question once the button added above is clicked.
+
     function nextQuestion() {
-      // Function takes place when button clicked.
-
-      // Clears out the current question and multiple choice options.
-
-      //         if(event.target.matches("button")) {
-      //             if(event.target.getAttribute("correct") == "yes") {
-      //                 choiceButton.setAttribute("style", "background-color:green;");
-      //             }
-      //             else if(event.target.getAttribute("correct") == "no") {
-      //                 choiceButton.setAttribute("style", "background-color:red;");
-      //             }
-      // }
-
+      //Clears current questions.
       questionTitle.innerHTML = "";
       multipleChoiceButtons.innerHTML = "";
 
-      // Moves to the next question
+      // Moves to the next question.
       currentQuestion += 1;
 
-      console.log(currentQuestion);
-
+      //Displays next set of questions.
       displayQuestions(questionsData);
-
     }
   }
 }
 //////////////////////////////////////////////////
 
-//Create function
-//button first, and then validate
+// Start Timer.
 
-//         if (questionsData[currentQuestion].multipleChoices[i] === questionsData[currentQuestion].correctAnswer) {
-//             // choiceButton.setAttribute("correct", "yes");
-//             console.log("correct");
-//         } else {
-//             // choiceButton.setAttribute("correct", "no");
-//             console.log("incorrect");
-//         }
+function startCountdown() {
+  timerInterval = setInterval(function () {
+    timer.textContent = "Time Remaining: " + secondsRemaining;
+    secondsRemaining--;
 
-//         //validate(selectedAnswer);
+    if (secondsRemaining === 0) {
+      endGame();
+    }
+  }, 1000);
+}
 
-//         nextQuestion();
-//     }
+///////////////////////////////////////////////////
 
-// }
+// End Game.
 
+function endGame() {
+
+  // Clear timer.  
+  clearInterval(timerInterval);
+}
 // create the html.
 //get elements
-//create the elements in javascript for the html. 
-
+//create the elements in javascript for the html.
