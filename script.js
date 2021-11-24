@@ -30,8 +30,10 @@ var startGameButton = document.getElementById("startGame");
 var welcome = document.querySelector(".welcomeMessage");
 var timer = document.getElementById("timer");
 
-var secondsRemaining = 200;
+var secondsRemaining = 10;
 var timerInterval;
+var score = 0;
+var numberOfQuestions = Object.keys(questionsData).length;
 
 // Hides welcome message when the button is clicked and reveals questions.
 startGameButton.addEventListener("click", function () {
@@ -39,7 +41,7 @@ startGameButton.addEventListener("click", function () {
   welcome.setAttribute("style", "display:none;");
 
   // Displays questions that is being created in function below.
-  displayQuestions(questionsData);
+  displayQuestions();
 
   // Start timer.
   startCountdown();
@@ -55,6 +57,11 @@ var choiceButton;
 
 // Displays questions.
 function displayQuestions() {
+  if (currentQuestion >= Object.keys(questionsData).length - 1) {
+    endGame();
+  }
+  console.log(Object.keys(questionsData).length);
+
   // Pulling questionTitle div from HTML to Javascript.
   var questionTitle = document.getElementById("questionTitle");
 
@@ -81,8 +88,6 @@ function displayQuestions() {
 
     // Validates the Players button selection.
 
-    var score = 0;
-
     choiceButton.addEventListener("click", function (event) {
       //   console.log(event.target.textContent);
       if (
@@ -90,7 +95,7 @@ function displayQuestions() {
         questionsData[currentQuestion].correctAnswer
       ) {
         // choiceButton.setAttribute("style", "background-color:green;");
-        score ++;
+        score++;
         console.log("Correct");
         console.log(score);
       } else {
@@ -100,7 +105,6 @@ function displayQuestions() {
       }
       nextQuestion();
     });
-
 
     //////////////////////////////////////////////////
 
@@ -115,7 +119,7 @@ function displayQuestions() {
       currentQuestion += 1;
 
       //Displays next set of questions.
-      displayQuestions(questionsData);
+      displayQuestions();
     }
   }
 }
@@ -128,7 +132,7 @@ function startCountdown() {
     timer.textContent = "Time Remaining: " + secondsRemaining;
     secondsRemaining--;
 
-    if (secondsRemaining === 0) {
+    if (secondsRemaining <= -1) {
       endGame();
     }
   }, 1000);
@@ -136,41 +140,52 @@ function startCountdown() {
 
 ///////////////////////////////////////////////////
 
+///////////////////////////////////////////////////
 
-
-
-
-
-
-
+///////////////////////////////////////////////////
 
 // End Game.
 
 function endGame() {
-
-
-  // Clear timer.  
+  // Clear timer.
   clearInterval(timerInterval);
 
+  gameSection.setAttribute("style", "display:none;");
 
-  }
+  var resultsSection = document.getElementById("resultsSection");
+  var displayResults = document.getElementById("results");
+  var submitInitialsButton = document.getElementById("submitInitials");
 
-function calculateScore() {
+  displayResults.innerHTML =
+    "Your final score is " + score + " out of " + numberOfQuestions;
 
-
-var displayResults = document.getElementById("results");
-
-    for (var i = 0; i < questionsData.length; i++ ) {
-            if(currentQuestion >= questionsData.length-1) {
-                gameSection.setAttribute("style", "display:none;");
-                displayResults.textContent = "Your final score is " + score + " out of ";
-                displayResults.innerHTML = "Your final score is " + score + " out of ";
-
-    
-
-    } calculateScore();
-} 
+  resultsSection.classList.remove("hideResultsSection");
 }
+
+////////////////
+
+//Saving Scores
+
+var username = document.getElementById("playerInitials");
+var saveScoreButton = document.getElementById("submitInitials");
+
+function saveHighScores() {
+  saveScoreButton.addEventListener("click", function () {
+    var playerScore = {
+      score: score,
+      name: username.value,
+    };
+
+    score.push(playerScore);
+
+    localStorage.setItem("playerScore", JSON.stringify(playerScore));
+
+    var score = JSON.parse(localStorage.getItem("playerScore")) || [];
+
+    console.log(playerScore);
+  });
+}
+
 // create the html.
 //get elements
 //create the elements in javascript for the html.
