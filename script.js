@@ -140,9 +140,6 @@ function startCountdown() {
 
 ///////////////////////////////////////////////////
 
-///////////////////////////////////////////////////
-
-///////////////////////////////////////////////////
 
 // End Game.
 
@@ -166,28 +163,106 @@ function endGame() {
 
 //Saving Scores
 
+
+// var username = document.getElementById("playerInitials");
+// var saveScoreButton = document.getElementById("submitInitials");
+
+
+// var highScores = [];
+// var allHighScores = localStorage.getItem("high_scores");
+
+
+// if (allHighScores) {
+//   allHighScores = JSON.parse(allHighScores);
+//   for( var i = 0; i < allHighScores.length; i++) {
+//     highScores.push(allHighScores[i]);
+//   }
+// }
+
+
+// function saveHighScores(event) {
+ 
+//     event.preventDefault();
+
+//     console.log("score: " + score);
+//     console.log("username: " + username.value.trim());
+
+   
+
+//   //  var playerScores = {
+//   //     totalPoints: score,
+//   //     name: username.value.trim(),
+//   //   };
+
+
+   
+
+//     //allScores.push(playerScore);
+//     //highScores.push(playerScores);
+//     highScores.push({ 'totalPoints': score, 'name': username.value.trim() });
+
+
+
+//     //localStorage.setItem("player_Score", JSON.stringify(playerScore));
+//     localStorage.setItem("high_score", JSON.stringify(highScores));
+   
+ 
+
+//    window.location.href="highscores.html";
+//   };
+
+
+// saveScoreButton.addEventListener("click", saveHighScores) 
+
 var username = document.getElementById("playerInitials");
 var saveScoreButton = document.getElementById("submitInitials");
 
-function saveHighScores() {
-  saveScoreButton.addEventListener("click", function(event) {
+
+var highScores = [];
+// var allHighScores = localStorage.getItem("high_scores");
+
+
+// if (allHighScores) {
+//   allHighScores = JSON.parse(allHighScores);
+//   for( var i = 0; i < allHighScores.length; i++) {
+//     highScores.push(allHighScores[i]);
+//   }
+// }
+
+
+function saveHighScores(event) {
+ 
     event.preventDefault();
 
-    var playerScore = {
-      score: score,
-      name: username,
+    console.log("score: " + score);
+    console.log("username: " + username.value.trim());
+
+   
+
+   var playerScores = {
+      totalPoints: score,
+      name: username.value.trim(),
     };
 
-    score.push(playerScore);
 
-    localStorage.setItem("playerScore", JSON.stringify(playerScore));
+   
 
-    var score = JSON.parse(localStorage.getItem("playerScore")) || [];
+    //allScores.push(playerScore);
+    highScores.push(playerScores);
+    // highScores.push({ 'totalPoints': score, 'name': username.value.trim() });
 
-    console.log(playerScore);
-  });
-}
 
-// create the html.
-//get elements
-//create the elements in javascript for the html.
+
+    //localStorage.setItem("player_Score", JSON.stringify(playerScore));
+    // localStorage.setItem("high_score", JSON.stringify(highScores));
+
+    localStorage.setItem("high_score", JSON.stringify(highScores));
+   
+ 
+
+   window.location.href="highscores.html";
+  };
+
+
+saveScoreButton.addEventListener("click", saveHighScores) 
+
