@@ -200,19 +200,15 @@ function saveHighScores(event) {
  
     event.preventDefault();
 
-    console.log("score: " + score);
-    console.log("username: " + username.value.trim());
-  
-
-   
 
    var playerScores = {
       totalPoints: score,
-      name: username.value,
+      name: username.value.trim()
     };
 
+  
 
-    // highScores.push(playerScores);
+    highScores.push(playerScores);
 
     
 

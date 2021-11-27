@@ -2,12 +2,6 @@ var highScoresBoard = document.getElementById("highScoresBoard");
 var scoreBoard = document.getElementById("scoreBoard");
 var highScoresList;
 
-///////////////////////////
-
-//Works inside and outside of a function
-
-var scoreBoard = document.getElementById("scoreBoard");
-
 
 /////////
 
