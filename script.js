@@ -251,6 +251,8 @@ function saveHighScores(event) {
     highScores.push(playerScores);
     // highScores.push({ 'totalPoints': score, 'name': username.value.trim() });
 
+    highScores.sort((a, b) => b.playerScores - a.playerScores);
+
 
 
     //localStorage.setItem("player_Score", JSON.stringify(playerScore));
