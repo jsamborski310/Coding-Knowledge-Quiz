@@ -19,8 +19,13 @@ var questionsData = [
   {
     question: "Five plus five, equals?",
     multipleChoices: ["Ten", "Three", "Four", "Five"],
-    correctAnswer: "Two",
+    correctAnswer: "Ten",
   },
+  {
+    question: "Five plus six, equals?",
+    multipleChoices: ["Eleven", "Three", "Four", "Five"],
+    correctAnswer: "Eleven",
+},
 ];
 
 /////////////////////////////////////////
@@ -30,10 +35,10 @@ var startGameButton = document.getElementById("startGame");
 var welcome = document.querySelector(".welcomeMessage");
 var timer = document.getElementById("timer");
 
-var secondsRemaining = 10;
+var secondsRemaining = 20;
 var timerInterval;
 var score = 0;
-var numberOfQuestions = Object.keys(questionsData).length;
+
 
 // Hides welcome message when the button is clicked and reveals questions.
 startGameButton.addEventListener("click", function () {
@@ -57,10 +62,21 @@ var choiceButton;
 
 // Displays questions.
 function displayQuestions() {
-  if (currentQuestion >= Object.keys(questionsData).length - 1) {
-    endGame();
-  }
-  console.log(Object.keys(questionsData).length);
+
+
+  for (
+    var i = 0; i < questionsData.length; i++) {
+      if (currentQuestion >= questionsData.length) {
+        endGame();
+
+        console.log("questionsData.length: " + questionsData.length);
+      }
+
+      
+    }
+
+
+  
 
   // Pulling questionTitle div from HTML to Javascript.
   var questionTitle = document.getElementById("questionTitle");
@@ -151,10 +167,10 @@ function endGame() {
 
   var resultsSection = document.getElementById("resultsSection");
   var displayResults = document.getElementById("results");
-  var submitInitialsButton = document.getElementById("submitInitials");
+
 
   displayResults.innerHTML =
-    "Your final score is " + score + " out of " + numberOfQuestions;
+  "Your final score is " + score + " out of " + questionsData.length;
 
   resultsSection.classList.remove("hideResultsSection");
 }
@@ -164,70 +180,20 @@ function endGame() {
 //Saving Scores
 
 
-// var username = document.getElementById("playerInitials");
-// var saveScoreButton = document.getElementById("submitInitials");
-
-
-// var highScores = [];
-// var allHighScores = localStorage.getItem("high_scores");
-
-
-// if (allHighScores) {
-//   allHighScores = JSON.parse(allHighScores);
-//   for( var i = 0; i < allHighScores.length; i++) {
-//     highScores.push(allHighScores[i]);
-//   }
-// }
-
-
-// function saveHighScores(event) {
- 
-//     event.preventDefault();
-
-//     console.log("score: " + score);
-//     console.log("username: " + username.value.trim());
-
-   
-
-//   //  var playerScores = {
-//   //     totalPoints: score,
-//   //     name: username.value.trim(),
-//   //   };
-
-
-   
-
-//     //allScores.push(playerScore);
-//     //highScores.push(playerScores);
-//     highScores.push({ 'totalPoints': score, 'name': username.value.trim() });
-
-
-
-//     //localStorage.setItem("player_Score", JSON.stringify(playerScore));
-//     localStorage.setItem("high_score", JSON.stringify(highScores));
-   
- 
-
-//    window.location.href="highscores.html";
-//   };
-
-
-// saveScoreButton.addEventListener("click", saveHighScores) 
-
 var username = document.getElementById("playerInitials");
 var saveScoreButton = document.getElementById("submitInitials");
 
 
 var highScores = [];
-// var allHighScores = localStorage.getItem("high_scores");
+var allHighScores = localStorage.getItem("high_scores");
 
 
-// if (allHighScores) {
-//   allHighScores = JSON.parse(allHighScores);
-//   for( var i = 0; i < allHighScores.length; i++) {
-//     highScores.push(allHighScores[i]);
-//   }
-// }
+if (allHighScores) {
+  allHighScores = JSON.parse(allHighScores);
+  for (var i = 0; i < allHighScores.length; i++) {
+    highScores.push(allHighScores[i]);
+  }
+}
 
 
 function saveHighScores(event) {
@@ -236,31 +202,27 @@ function saveHighScores(event) {
 
     console.log("score: " + score);
     console.log("username: " + username.value.trim());
+  
 
    
 
    var playerScores = {
       totalPoints: score,
-      name: username.value.trim(),
+      name: username.value,
     };
 
 
-   
+    // highScores.push(playerScores);
 
-    //allScores.push(playerScore);
-    highScores.push(playerScores);
-    // highScores.push({ 'totalPoints': score, 'name': username.value.trim() });
+    
 
     highScores.sort((a, b) => b.playerScores - a.playerScores);
 
 
 
-    //localStorage.setItem("player_Score", JSON.stringify(playerScore));
-    // localStorage.setItem("high_score", JSON.stringify(highScores));
-
     localStorage.setItem("high_score", JSON.stringify(highScores));
    
- 
+  
 
    window.location.href="highscores.html";
   };

@@ -158,5 +158,44 @@ function startGame () {...}
 
 
 
+// function showHighScores () {
+//     var list = highScores.map((playerScores) => {
+//         console.log(list);
+//         return '<li class="high-score">${playerScore.name}</li>';
+//     })
+// }
 
+// showHighScores();
+
+// function showHighScores () {
+//     var list = highScores.map(playerScore => {
+//         console.log(list);
+//         return `<li class="high-score">${playerScore.name}</li>`;
+//     })
+// } showHighScores();
+
+// function showHighScores() {
+//     highScores.map(playerScore => {
+
+//         return `<li class="high-score">${playerScore.totalPoints}</li>`;
+//     })
+//     showHighScores();
+
+// }
+
+///////////////////////////////
+
+// function showHighScores() {
+
+//     var scoreBoard = document.getElementById("scoreBoard");
+
+//     var highScores = JSON.parse(localStorage.getItem("high_score")) || [];
+
+//     scoreBoard.innerHTML = highScores
+//     .map((playerScore) => `<li>${playerScore.name} - ${playerScore.totalPoints}</li>`)
+//     .join('')
+
+// }; showHighScores();
+
+/////
 
