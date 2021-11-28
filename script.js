@@ -64,27 +64,40 @@ var choiceButton;
 function displayQuestions() {
 
 
+  //Gets the number of questions in QuestionsData. This information is used to terminate the game when the currentQuestion reaches that number.
   for (
-    var i = 0; i < questionsData.length; i++) {
+    var i = 0; i < questionsData.length-1; i++) {
+
+
       if (currentQuestion >= questionsData.length) {
         endGame();
 
-        console.log("questionsData.length: " + questionsData.length);
-      }
 
-      
+        console.log("questionsData.length: " + questionsData.length, currentQuestion);
+        
+
+        break;
+        
+      }
     }
 
 
-  
 
   // Pulling questionTitle div from HTML to Javascript.
   var questionTitle = document.getElementById("questionTitle");
 
   // Setting the quiz question to the questionTitle div in HTML.
+
+if(currentQuestion < questionsData.length) {
+
   questionTitle.textContent = questionsData[currentQuestion].question;
 
+}
+
   // Setting the program to run through the multiple choices in a specific question.
+
+
+
   for (
     var i = 0;
     i < questionsData[currentQuestion].multipleChoices.length;
@@ -132,10 +145,19 @@ function displayQuestions() {
       multipleChoiceButtons.innerHTML = "";
 
       // Moves to the next question.
-      currentQuestion += 1;
+
+      currentQuestion ++;
+
+      if(currentQuestion < questionsData.length) {
 
       //Displays next set of questions.
       displayQuestions();
+      }
+      else {
+        endGame();
+      }
+
+      console.log(currentQuestion);
     }
   }
 }
@@ -185,15 +207,15 @@ var saveScoreButton = document.getElementById("submitInitials");
 
 
 var highScores = [];
-var allHighScores = localStorage.getItem("high_scores");
+// var allHighScores = localStorage.getItem("high_scores");
 
 
-if (allHighScores) {
-  allHighScores = JSON.parse(allHighScores);
-  for (var i = 0; i < allHighScores.length; i++) {
-    highScores.push(allHighScores[i]);
-  }
-}
+// if (allHighScores) {
+//   allHighScores = JSON.parse(allHighScores);
+//   for (var i = 0; i < allHighScores.length; i++) {
+//     highScores.push(allHighScores[i]);
+//   }
+// }
 
 
 function saveHighScores(event) {
@@ -206,14 +228,16 @@ function saveHighScores(event) {
       name: username.value.trim()
     };
 
-  
+console.log("playerScores: " + JSON.stringify(playerScores));
+
+var highScores = JSON.parse(localStorage.getItem("high_score")) || [];
 
     highScores.push(playerScores);
+   
 
-    
+  
 
     highScores.sort((a, b) => b.playerScores - a.playerScores);
-
 
 
     localStorage.setItem("high_score", JSON.stringify(highScores));
@@ -221,8 +245,10 @@ function saveHighScores(event) {
   
 
    window.location.href="highscores.html";
+
+   console.log("local storage: " + localStorage.getItem("high_score"), "highscore array: " + JSON.stringify(highScores));
   };
 
 
-saveScoreButton.addEventListener("click", saveHighScores) 
+saveScoreButton.addEventListener("click", saveHighScores); 
 

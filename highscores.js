@@ -8,20 +8,20 @@ var highScoresList;
 
 function showHighScores() {
 
-    
 
-    var allHighScores = JSON.parse(localStorage.getItem("high_score")) || [];
+    var highScores = JSON.parse(localStorage.getItem("high_score")) || [];
 
-   for (var i = 0; i < allHighScores.length; i++) {
+   for (var i = 0; i < highScores.length; i++) {
 
 
        var highScoresList = document.createElement("li");
 
-       highScoresList.textContent = allHighScores[i].name + allHighScores[i].totalPoints;
+       highScoresList.textContent = highScores[i].name + highScores[i].totalPoints;
 
        scoreBoard.append(highScoresList);
    }
 }
+
 
 showHighScores();
 
