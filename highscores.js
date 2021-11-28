@@ -16,7 +16,9 @@ function showHighScores() {
 
        var highScoresList = document.createElement("li");
 
-       highScoresList.textContent = highScores[i].name + highScores[i].totalPoints;
+       highScoresList.className = "scoresList";
+
+       highScoresList.textContent = `${highScores[i].name} ${highScores[i].totalPoints}`;
 
        scoreBoard.append(highScoresList);
    }
@@ -33,10 +35,23 @@ showHighScores();
 var homebtn = document.getElementById("homeBtn");
 var homebutton;
 
-function pageButtons() {
-  homebutton = document.createElement("button");
-  homebutton.textContent = "Go Back";
-  homebtn.append(homebutton);
+var clearScores = document.getElementById("clearScores");
+
+function clearStorage() {
+    localStorage.clear();
+    // highScores = [];
+    scoreBoard.innerHTML = "Play Again."
 }
 
-pageButtons();
+// clearScores.addEventListener("click", function () {
+//     localStorage.clear();
+   
+//   });
+
+// function pageButtons() {
+//   homebutton = document.createElement("button");
+//   homebutton.textContent = "Go Back";
+//   homebtn.append(homebutton);
+// }
+
+// pageButtons();

@@ -1,25 +1,109 @@
 * {
     padding:0;
     margin:0;
+    border:0;
+}
+body {
+    background-color: #D8DBE2;
 }
 
 header {
     display:flex;
     justify-content: space-between;
     padding:30px;
+    background-color: pink;
 }
 main {
     width:80%;
     margin:0 auto;
+    padding:40px;
+    border-radius:20px;
+    box-shadow: 15px 15px 40px #00000020;
+    background-color:#ffffff;
+}
+
+h1 {
+    color:#373F51;
+}
+p {
+    margin: 20px 0;
+    line-height: 1.3;
+}
+
+a {
+    text-decoration: none;
+}
+
+#startGame, #submitInitials, #homeBtn {
+    background-color:#000000;
+    color:#ffffff;
+    padding: 15px 30px;
+    border-radius:10px;
+    text-transform:uppercase;
+    letter-spacing: 2px;
+}
+#startGame:hover, #submitInitials:hover, 
+#homeBtn:hover {
+    background-color:#FA8072;
+}
+
+#clearScores {
+    background-color:#FA8072;
+    color:#ffffff;
+    padding: 15px 30px;
+    border-radius:10px;
+    text-transform:uppercase;
+    letter-spacing: 2px;
+    margin-left:15px;
+}
+#clearScores:hover {
+    background-color:#000000;
 }
 
 .choiceButtonStyle button {
-    background-color:black;
     width: 100%;
-    color:#ffffff;
+    border:2px solid #fA8072;
+    background-color:#ffffff;
+    color:#000000;
+    margin: 5px 0;
+    border-radius:10px;
+    padding: 15px 30px;;
     font-size: 30px;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    text-align:left;
+
 }
+.choiceButtonStyle button:hover {
+    border:2px solid #fA8072;
+    background-color:#fA8072;
+    color:#ffffff;
+}
+
+#questionTitle {
+    font-size:25px;
+    font-weight:600;
+    margin-bottom:30px;
+}
+
+.hideResultsSection {
+    display:none;
+}
+
+#results {
+    font-size:25px;
+    font-weight:600;
+    margin-bottom:20px;
+}
+#playerInitials {
+    border-bottom:2px solid #000000;
+    margin-right:20px;
+}
+
+#playerInitials:focus-visible {
+    display:none;
+}
+
 .wrong {
     background-color: red;
 }
@@ -28,6 +112,10 @@ main {
     background-color:greenyellow;
 }
 
-.hideResultsSection {
-    display:none;
+#scoreBoard {
+    padding: 40px 0;
+}
+
+li {
+    list-style-type:none;
 }

@@ -1,30 +1,30 @@
 var questionsData = [
   {
-    question: "Two plus two, equals?",
-    multipleChoices: ["One", "Two", "Three", "Four"],
-    correctAnswer: "Four",
+    question: "What does CSS stand for?",
+    multipleChoices: ["Color Style Saver", "Cascading Style Sheets", "Cascading Sheets Style", "Cascading Simple Style"],
+    correctAnswer: "Cascading Style Sheets",
   },
 
   {
-    question: "Three plus three, equals?",
-    multipleChoices: ["Five", "Six", "Seven", "Eight"],
-    correctAnswer: "Six",
+    question: "What does HTML stand for?",
+    multipleChoices: ["HyperText Markup Language", "HighText Marker Language", "HyperText Makeup Language", "HighText Markup Layout"],
+    correctAnswer: "HyperText Markup Language",
   },
 
   {
-    question: "One plus one, equals?",
-    multipleChoices: ["Two", "Three", "Four", "Five"],
-    correctAnswer: "Two",
+    question: "The CSS Box Model is comprised of which four properties?",
+    multipleChoices: ["Width, Height, Padding, Margin", "Buttons, Padding, Border, Margin", "Content, Font-Size, Color, Margin", "Content, Padding, Border, Margin"],
+    correctAnswer: "Content, Padding, Border, Margin",
   },
   {
-    question: "Five plus five, equals?",
-    multipleChoices: ["Ten", "Three", "Four", "Five"],
-    correctAnswer: "Ten",
+    question: "What function does the push() method have?",
+    multipleChoices: ["Pushes existing items out of an array.", "Adds new items to the end of an array.", "Adds new items to the beginning of an array.", "Adds an operator into the array."],
+    correctAnswer: "Adds new items to the end of an array.",
   },
   {
-    question: "Five plus six, equals?",
-    multipleChoices: ["Eleven", "Three", "Four", "Five"],
-    correctAnswer: "Eleven",
+    question: "What functionality does triple equal (===) contain?",
+    multipleChoices: ["Verifies that both type and value are equal.", "Adds three numbers together.", "Verifies that type or value are equal.", "Does not exist."],
+    correctAnswer: "Verifies that both type and value are equal.",
 },
 ];
 
@@ -35,9 +35,11 @@ var startGameButton = document.getElementById("startGame");
 var welcome = document.querySelector(".welcomeMessage");
 var timer = document.getElementById("timer");
 
-var secondsRemaining = 20;
+var secondsRemaining = 30;
 var timerInterval;
 var score = 0;
+
+
 
 
 // Hides welcome message when the button is clicked and reveals questions.
@@ -64,39 +66,17 @@ var choiceButton;
 function displayQuestions() {
 
 
-  //Gets the number of questions in QuestionsData. This information is used to terminate the game when the currentQuestion reaches that number.
-  for (
-    var i = 0; i < questionsData.length-1; i++) {
-
-
-      if (currentQuestion >= questionsData.length) {
-        endGame();
-
-
-        console.log("questionsData.length: " + questionsData.length, currentQuestion);
-        
-
-        break;
-        
-      }
-    }
-
-
 
   // Pulling questionTitle div from HTML to Javascript.
   var questionTitle = document.getElementById("questionTitle");
 
   // Setting the quiz question to the questionTitle div in HTML.
 
-if(currentQuestion < questionsData.length) {
-
   questionTitle.textContent = questionsData[currentQuestion].question;
 
-}
+// }
 
   // Setting the program to run through the multiple choices in a specific question.
-
-
 
   for (
     var i = 0;
@@ -106,7 +86,10 @@ if(currentQuestion < questionsData.length) {
     // Creating a button element for each multiple choice option.
     choiceButton = document.createElement("button");
 
+    choiceButton.id = "selectedAnswer";
+
     // Adds the multiple choice text to the button.
+
     choiceButton.textContent =
       questionsData[currentQuestion].multipleChoices[i];
 
@@ -122,13 +105,17 @@ if(currentQuestion < questionsData.length) {
       if (
         event.target.textContent ===
         questionsData[currentQuestion].correctAnswer
-      ) {
-        // choiceButton.setAttribute("style", "background-color:green;");
+      ) {  
+
+        document.getElementById("selectedAnswer").style.background = "green";
+
         score++;
         console.log("Correct");
         console.log(score);
       } else {
-        // choiceButton.setAttribute("style", "background-color:red;");
+     
+        document.getElementById("selectedAnswer").style.background = "red";
+
         secondsRemaining -= 10;
         console.log("Incorrect");
       }
@@ -140,14 +127,16 @@ if(currentQuestion < questionsData.length) {
     // Moves Player to the next question once the button added above is clicked.
 
     function nextQuestion() {
+
       //Clears current questions.
       questionTitle.innerHTML = "";
       multipleChoiceButtons.innerHTML = "";
 
       // Moves to the next question.
-
       currentQuestion ++;
 
+
+      // Finds length and stops game if there are no more questions.
       if(currentQuestion < questionsData.length) {
 
       //Displays next set of questions.
@@ -156,8 +145,6 @@ if(currentQuestion < questionsData.length) {
       else {
         endGame();
       }
-
-      console.log(currentQuestion);
     }
   }
 }
@@ -207,16 +194,7 @@ var saveScoreButton = document.getElementById("submitInitials");
 
 
 var highScores = [];
-// var allHighScores = localStorage.getItem("high_scores");
-
-
-// if (allHighScores) {
-//   allHighScores = JSON.parse(allHighScores);
-//   for (var i = 0; i < allHighScores.length; i++) {
-//     highScores.push(allHighScores[i]);
-//   }
-// }
-
+var highScores = JSON.parse(localStorage.getItem("high_score")) || [];
 
 function saveHighScores(event) {
  
@@ -228,14 +206,8 @@ function saveHighScores(event) {
       name: username.value.trim()
     };
 
-console.log("playerScores: " + JSON.stringify(playerScores));
-
-var highScores = JSON.parse(localStorage.getItem("high_score")) || [];
-
     highScores.push(playerScores);
-   
 
-  
 
     highScores.sort((a, b) => b.playerScores - a.playerScores);
 
