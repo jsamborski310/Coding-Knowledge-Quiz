@@ -58,7 +58,7 @@ After some trial and error, office hours attendance, Googling, tutoring and stud
 
 ## Take a Look
 
-GitHub: https://github.com/jsamborski310/code-quiz
+GitHub: https://github.com/jsamborski310/Coding-Knowledge-Quiz
 
 GitHub Pages: https://jsamborski310.github.io/Coding-Knowledge-Quiz/
 
