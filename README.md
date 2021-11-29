@@ -2,12 +2,12 @@
 
 ## Overview
 
-Programmed a 5-question timed quiz to test players knowledge on coding. Players are able to view their scores, store them to keep a record, or clear them. The goal is simple, get all five questions right within the allotted 30 seconds. Wrong answers cost players 10 seconds off the clock.
+Programmed a 5-question timed quiz to test players knowledge on coding. Players are able to view their scores, store them to keep a record, or clear them. The goal is simple, get all 5 questions right within the allotted 30 seconds. Wrong answers cost players 10 seconds off the clock.
 
 
 ## The Project
 
-The coding quiz was built using HTML, CSS, and javascriipt, and is accessibile via the browser. When the player accesses the game, they are greeted with a welcome message that contains game instructions. Once the player clicks start, the welcome message is hidden and the timer starts counting down from 30 seconds. Player has five questions to answer within the alloted time, and are penalized ten seconds for each incorrect answer. Got it right? The word "correct" will pop up on the screen. Wrong? The program lets the player know by displaying "incorrect" below the questions. 
+The coding quiz was built using HTML, CSS, and javascriipt, and is accessibile via the browser. When the player accesses the game, they are greeted with a welcome message that contains game instructions. Once the player clicks start, the welcome message is hidden and the timer starts counting down from 30 seconds. Player has five questions to answer within the alloted time, and are penalized 10 seconds for each incorrect answer. Got it right? The word "correct" will pop up on the screen. Wrong? The program lets the player know by displaying "incorrect" below the questions. 
 
 The game comes to an end when the player has answered all questions or time runs out. The program will inform the player how many questions they got correct out of the five presented to them, and give them the opportunity to enter their initials and save their scores. 
 
@@ -21,6 +21,7 @@ Before beginning the project, I began thinking through the requirements and writ
 - How do I display the next question? 
 - How does the application verify if the players' answer is correct?
 
+
 ###### Displaying the next question
 
 There seemed to be a simple solution to displaying the next question. Only, at the time, it felt like there was some magical formula I didn't have the receipe for. And really, it was simple...clear out the values and add one to the index. 
@@ -32,6 +33,7 @@ It looks like this:
     multipleChoiceButtons.innerHTML = "";
     currentQuestion ++;
     ```
+
 
 ###### Validating players' selection
 
