@@ -5,18 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>High Scores</title>
-    <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
+
     <main id="highScoresBoard">
-      <h2>Page Title</h2>
+      <h2>Scoreboard</h2>
+
+      <!--Contains list of scores-->
       <ul id="scoreBoard"></ul>
-      <div id="inline-buttons">
-        <button id="homeBtn" onclick="window.location.href = '/index.html';">Home</button>
+
+      <!--Buttons to go home or clear scores.-->
+      <div>
+        <button id="homeBtn" onclick="window.location.href = '/index.html';">Play Again</button>
         <button id="clearScores" onclick="clearStorage()">Clear Scores</button>
       </div>
     </main>
 
-    <script type="text/javascript" src="highscores.js"></script>
+    <script type="text/javascript" src="assets/js/highscores.js"></script>
   </body>
 </html>

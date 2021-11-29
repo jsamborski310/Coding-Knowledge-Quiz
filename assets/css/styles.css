@@ -3,19 +3,24 @@
     margin:0;
     border:0;
 }
+:root {
+    --salmon: #FA8072;
+}
 body {
-    background-color: #D8DBE2;
+    background-color: #f1f1f1;
 }
 
 header {
     display:flex;
     justify-content: space-between;
+    align-items: center;
     padding:30px;
-    background-color: pink;
+    background-color: var(--salmon);
+    
 }
 main {
     width:80%;
-    margin:0 auto;
+    margin:40px auto;
     padding:40px;
     border-radius:20px;
     box-shadow: 15px 15px 40px #00000020;
@@ -32,7 +37,28 @@ p {
 
 a {
     text-decoration: none;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 3px;
 }
+a:hover {
+    color:#000000;
+}
+
+/* Styles Timer on Header. */
+
+#timer {
+    background-color:#000000;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 3px;
+    padding:20px 40px;
+    border-radius: 10px;
+}
+
+/* Action Buttons. */
 
 #startGame, #submitInitials, #homeBtn {
     background-color:#000000;
@@ -44,11 +70,11 @@ a {
 }
 #startGame:hover, #submitInitials:hover, 
 #homeBtn:hover {
-    background-color:#FA8072;
+    background-color:var(--salmon);
 }
 
 #clearScores {
-    background-color:#FA8072;
+    background-color:var(--salmon);
     color:#ffffff;
     padding: 15px 30px;
     border-radius:10px;
@@ -60,9 +86,11 @@ a {
     background-color:#000000;
 }
 
+/* Multiple Choice Buttons. */
+
 .choiceButtonStyle button {
     width: 100%;
-    border:2px solid #fA8072;
+    border:2px solid var(--salmon);
     background-color:#ffffff;
     color:#000000;
     margin: 5px 0;
@@ -75,10 +103,14 @@ a {
 
 }
 .choiceButtonStyle button:hover {
-    border:2px solid #fA8072;
-    background-color:#fA8072;
+    border:2px solid var(--salmon);
+    background-color:var(--salmon);
     color:#ffffff;
 }
+
+
+/* Questions font styling. */
+
 
 #questionTitle {
     font-size:25px;
@@ -86,36 +118,55 @@ a {
     margin-bottom:30px;
 }
 
-.hideResultsSection {
-    display:none;
-}
+/* Results font styling. */
 
 #results {
     font-size:25px;
     font-weight:600;
     margin-bottom:20px;
 }
+
+/* Player initials input. */
+
 #playerInitials {
-    border-bottom:2px solid #000000;
+    border:2px solid #000000;
     margin-right:20px;
+    padding:12px;
+    border-radius:10px;
 }
 
 #playerInitials:focus-visible {
+    border: 2px solid var(--salmon);
+}
+
+/* Hides results section until needed. */
+
+.hideResultsSection {
     display:none;
 }
 
-.wrong {
-    background-color: red;
-}
-
-.correct {
-    background-color:greenyellow;
-}
+/* High scores page list styling. */
 
 #scoreBoard {
-    padding: 40px 0;
+    padding: 20px 0 40px 0;
 }
 
 li {
     list-style-type:none;
+}
+.scoresList:nth-child(odd) {
+    background-color:#fA807240;
+    border-radius: 5px;
+}
+.scoresList {
+    padding: 10px;
+}
+
+/* Media Query for header. */
+
+@media screen and (max-width:570px) {
+    header {
+        flex-direction: column;
+        gap:15px;
+    }
 }

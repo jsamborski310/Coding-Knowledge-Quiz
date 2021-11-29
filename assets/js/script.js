@@ -1,3 +1,6 @@
+// GAME QUESTIONS
+//------------------------
+
 var questionsData = [
   {
     question: "What does CSS stand for?",
@@ -30,101 +33,140 @@ var questionsData = [
 
 /////////////////////////////////////////
 
-// Variables
+// GAME INTRO
+//------------------------
+
+// Pulling from HTML.
 var startGameButton = document.getElementById("startGame");
 var welcome = document.querySelector(".welcomeMessage");
 var timer = document.getElementById("timer");
 
+// Variables
 var secondsRemaining = 30;
 var timerInterval;
 var score = 0;
 
 
+// DISPLAY QUESTIONS
+//------------------------
 
+// Pulling from HTML.
+var gameSection = document.getElementById("gameQuestions");
+var multipleChoiceButtons = document.getElementById("multipleChoiceButtons");
+var correct = document.getElementById("correctIncorrect");
+
+// Variables
+var currentQuestion = 0;
+var choiceButton;
+
+
+// SAVE SCORES
+//------------------------
+
+// Pulling from HTML.
+var username = document.getElementById("playerInitials");
+var saveScoreButton = document.getElementById("submitInitials");
+
+// Variables
+var highScores = JSON.parse(localStorage.getItem("high_score")) || [];
+
+
+
+/////////////////////////////////////////
+// Hiding timer until the game starts.
+
+timer.setAttribute("style", "display:none;");
+
+/////////////////////////////////////////
+
+// GAME INTRO
+//------------------------
 
 // Hides welcome message when the button is clicked and reveals questions.
 startGameButton.addEventListener("click", function () {
-  //Hides the welcome.
+
+  // Hides the welcome.
   welcome.setAttribute("style", "display:none;");
+
+  // Displays hidden timer.
+  timer.setAttribute("style", "display:block;");
+
+  // Starts timer.
+  startCountdown();
 
   // Displays questions that is being created in function below.
   displayQuestions();
-
-  // Start timer.
-  startCountdown();
+ 
 });
 
 ///////////////////////////////
 
-// Variables
-var gameSection = document.getElementById("gameQuestions");
-var multipleChoiceButtons = document.getElementById("multipleChoiceButtons");
-var currentQuestion = 0;
-var choiceButton;
 
-// Displays questions.
+// DISPLAY QUESTIONS
+//------------------------
+
+
 function displayQuestions() {
-
-
 
   // Pulling questionTitle div from HTML to Javascript.
   var questionTitle = document.getElementById("questionTitle");
 
   // Setting the quiz question to the questionTitle div in HTML.
-
   questionTitle.textContent = questionsData[currentQuestion].question;
 
-// }
 
   // Setting the program to run through the multiple choices in a specific question.
-
-  for (
-    var i = 0;
-    i < questionsData[currentQuestion].multipleChoices.length;
-    i++
-  ) {
+  for (var i = 0; i < questionsData[currentQuestion].multipleChoices.length; i++) {
+   
     // Creating a button element for each multiple choice option.
     choiceButton = document.createElement("button");
-
     choiceButton.id = "selectedAnswer";
 
     // Adds the multiple choice text to the button.
-
     choiceButton.textContent =
       questionsData[currentQuestion].multipleChoices[i];
 
     // Adds the buttons to the HTML.
     multipleChoiceButtons.append(choiceButton);
 
-    //////////////////////////////////////
 
-    // Validates the Players button selection.
+///////////////////////////////
+
+
+// ANSWER VALIDATION
+//------------------------
 
     choiceButton.addEventListener("click", function (event) {
-      //   console.log(event.target.textContent);
-      if (
-        event.target.textContent ===
-        questionsData[currentQuestion].correctAnswer
-      ) {  
 
-        document.getElementById("selectedAnswer").style.background = "green";
+      // Checks if button text matches the correct answer.
+      if (event.target.textContent === questionsData[currentQuestion].correctAnswer) {  
 
+        // Notifies player of correct answer.
+        correct.textContent = "Correct!";
+        correct.setAttribute("style", "text-transform:uppercase; color:#73648A; font-weight:700; font-family: Arial, Helvetica, sans-serif; padding-top: 20px; padding-left:5px;");
+
+        // Adds a point to the current score.
         score++;
-        console.log("Correct");
-        console.log(score);
+      
+
       } else {
      
-        document.getElementById("selectedAnswer").style.background = "red";
-
+        // Notifies player of incorrect answer.
+        correct.textContent = "Incorrect!";
+        correct.setAttribute("style", "text-transform:uppercase; color:#FA8072; font-weight:700; font-family: Arial, Helvetica, sans-serif; padding-top:20px; padding-left:5px;");
+        
+        // Deducts 10 seconds from time for incorrect answer.
         secondsRemaining -= 10;
-        console.log("Incorrect");
+        
       }
       nextQuestion();
     });
 
-    //////////////////////////////////////////////////
 
-    // Moves Player to the next question once the button added above is clicked.
+///////////////////////////////
+
+// NEXT QUESTION
+//------------------------
 
     function nextQuestion() {
 
@@ -135,22 +177,21 @@ function displayQuestions() {
       // Moves to the next question.
       currentQuestion ++;
 
-
-      // Finds length and stops game if there are no more questions.
+      // Finds length and stops game if there are no more questions. 
+      // Displays questions until there aren't anymore. 
       if(currentQuestion < questionsData.length) {
-
-      //Displays next set of questions.
-      displayQuestions();
-      }
-      else {
-        endGame();
-      }
+          displayQuestions();
+          }
+          else {
+            endGame();
+          }
     }
   }
 }
-//////////////////////////////////////////////////
+///////////////////////////////
 
-// Start Timer.
+// TIMER
+//------------------------
 
 function startCountdown() {
   timerInterval = setInterval(function () {
@@ -163,38 +204,35 @@ function startCountdown() {
   }, 1000);
 }
 
-///////////////////////////////////////////////////
+///////////////////////////////
 
-
-// End Game.
+// END GAME
+//------------------------
 
 function endGame() {
-  // Clear timer.
-  clearInterval(timerInterval);
 
-  gameSection.setAttribute("style", "display:none;");
-
+  // Pulling from HTML.
   var resultsSection = document.getElementById("resultsSection");
   var displayResults = document.getElementById("results");
 
+  // Clear timer.
+  clearInterval(timerInterval);
 
+  // Hides game section when no questions are left.
+  gameSection.setAttribute("style", "display:none;");
+
+  // Displays players result. 
   displayResults.innerHTML =
   "Your final score is " + score + " out of " + questionsData.length;
 
+  // Hides results section.
   resultsSection.classList.remove("hideResultsSection");
 }
 
-////////////////
+///////////////////////////////
 
-//Saving Scores
-
-
-var username = document.getElementById("playerInitials");
-var saveScoreButton = document.getElementById("submitInitials");
-
-
-var highScores = [];
-var highScores = JSON.parse(localStorage.getItem("high_score")) || [];
+// SAVES SCORES
+//------------------------
 
 function saveHighScores(event) {
  
@@ -206,21 +244,17 @@ function saveHighScores(event) {
       name: username.value.trim()
     };
 
+    // Pushes each new initial and score to the end of the highScores array.
     highScores.push(playerScores);
 
-
-    highScores.sort((a, b) => b.playerScores - a.playerScores);
-
-
+    // Stores scores.
     localStorage.setItem("high_score", JSON.stringify(highScores));
    
-  
-
-   window.location.href="highscores.html";
-
-   console.log("local storage: " + localStorage.getItem("high_score"), "highscore array: " + JSON.stringify(highScores));
+    // Directs player to Highscores page on button click.
+    window.location.href="highscores.html";
+ 
   };
 
-
+// Save scores function is executed on the click of this button.
 saveScoreButton.addEventListener("click", saveHighScores); 
 
