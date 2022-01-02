@@ -1,4 +1,6 @@
 # Coding-Knowledge-Quiz
+Quiz to test knowledge of coding. 
+
 
 ## Overview
 
